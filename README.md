@@ -27,6 +27,11 @@ Troubleshooting steps taken so far:
 - Tried cam0 and cam1 connectors on Pi 5
 - Tried a Pi 4
 
+```
+root@8e5d9368ae80:/usr/src# libcamera-hello --list-cameras -n -v
+No cameras available!
+```
+
 ## Resources Used
 
 - To build the rpicam apps: https://www.raspberrypi.com/documentation/computers/camera_software.html#building-rpicam-apps-without-building-libcamera
