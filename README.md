@@ -27,3 +27,8 @@ Troubleshooting steps taken so far:
 - Tried cam0 and cam1 connectors on Pi 5
 - Tried a Pi 4
 
+## Resources Used
+
+- To build the rpicam apps: https://www.raspberrypi.com/documentation/computers/camera_software.html#building-rpicam-apps-without-building-libcamera
+- For bind mounting the firmware folder into the container: https://forums.balena.io/t/how-to-mount-lib-firmware-rw/2949
+- Example of adding Pi OS elements to a Debian image: https://github.com/hyzhak/pi-camera-in-docker/blob/main/Dockerfile
