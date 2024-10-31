@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  pi-cam:
+    build: .
+    privileged: true
+    ports:
+      - "80:80"
+    labels:
+      io.balena.features.firmware: '1'
