@@ -1,6 +1,8 @@
 # balena-pi-ai-cam
 Example of running the Raspberry Pi AI Camera in a container on balena
 
+<img src="pi-ai-balena.jpg">
+
 ## Hardware
 This was tested on a Pi 4 and a Pi 5 with camera module 3 and the Pi AI camera module.
 
