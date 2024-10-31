@@ -1,5 +1,7 @@
 FROM balenalib/raspberrypi5-debian-python:bookworm-build
 
+# Next three lines courtesy of https://github.com/hyzhak/pi-camera-in-docker/blob/main/Dockerfile
+
 RUN apt update && apt install -y --no-install-recommends gnupg
 
 RUN echo "deb http://archive.raspberrypi.org/debian/ bookworm main" > /etc/apt/sources.list.d/raspi.list \
