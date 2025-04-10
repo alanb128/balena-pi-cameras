@@ -10,7 +10,7 @@ This was tested on a Pi 4 and a Pi 5 with camera module 3 and the Pi AI camera m
 
 ## Settings
 
-For camera module V2, increase GPU memory to at least 128 GB, and add a DT overlay for "imx219" (in balenaOS you can do these settings via the dahboard in "Device configuration)
+For camera module V2, increase GPU memory to at least 128 GB, and add a DT overlay for "imx219" (in balenaOS you can do these settings via the dashboard in "Device configuration)
 
 ## Software
 
