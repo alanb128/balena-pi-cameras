@@ -8,13 +8,21 @@ This was tested on a Pi 4 and a Pi 5 with camera module 3 and the Pi AI camera m
 
 **NOTE: As of now, the camera module 3 is detected and the rpicam apps work, however the AI Camera Module is not detected - still a work in progress!**
 
+## Settings
+
+For camera module V2, increase GPU memory to at least 128 GB, and add a DT overlay for "imx219" (in balenaOS you can do these settings via the dahboard in "Device configuration)
+
 ## Software
 
 Create a fleet in balenaCloud and push this repo. Flash a Pi 4 or Pi 5 with balenaOS from the fleet.
 
+If you have a Pi AI camera (IMX500) follow these two steps:
+
 - Using the terminal, run ./install.sh which installs the IMX 500 firmware and software (the firmware has access to `/lib/firmware/` via the docker compose label)
 
 - After installing the firmware, reboot the device from the dashboard
+
+For all camera models: 
 
 - After rebooting, go back to the terminal and run the ./start.sh script which should display any detected cameras.
 
