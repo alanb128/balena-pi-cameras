@@ -4,24 +4,22 @@ Example of running the Raspberry Pi AI Camera in a container on balena
 <img src="pi-ai-balena.jpg">
 
 ## Hardware
-This was tested on a Pi 4 and a Pi 5 with camera module 3 and the Pi AI camera module.
-
-**NOTE: As of now, the camera module 3 is detected and the rpicam apps work, however the AI Camera Module is not detected - still a work in progress!**
+This was tested on a Pi 4 and a Pi 5 with camera module 2, 3, and the Pi AI camera module, using balenaOS version balenaOS 6.5.24+rev4
 
 ## Settings
 
-Increase GPU memory to at least 128 GB, and add a DT overlay for the camera model in use:
+It is recommended to use the camera auto detect by setting `BALENA_HOST_CONFIG_camera_auto_detect` to `1` in the custom configuration section of the Device configuration tab.
+
+Alternatively, add a DT overlay for the camera model in use:
  - V2: "imx219"
  - V3: "imx708"
- - AI: "imx500"
-
-(in balenaOS you can do these settings via the dashboard in "Device configuration")
+ - AI: "imx500" (I was only able to auto detect this camera, this DT overlay did not work on balenaOS)
 
 ## Software
 
 Create a fleet in balenaCloud and push this repo. Flash a Pi 4 or Pi 5 with balenaOS from the fleet.
 
-If you have a Pi AI camera (IMX500) follow these two steps:
+If you have a Pi AI camera (IMX500) follow these steps:
 
 - Using the terminal, run ./install.sh which installs the IMX 500 firmware and software (the firmware has access to `/lib/firmware/` via the docker compose label)
 
@@ -31,19 +29,24 @@ For all camera models:
 
 - After rebooting, go back to the terminal and run the ./start.sh script which should display any detected cameras.
 
-The camera module 2/3 is detected, the Pi AI Camera is not.
-
-Troubleshooting steps taken so far:
-
-- Increased GPU memory to 128MB
-- Added "imx500" dtoverlay
-- Tried cam0 and cam1 connectors on Pi 5
-- Tried a Pi 4
+For the AI camera, you should see something like this:
 
 ```
-root@8e5d9368ae80:/usr/src# libcamera-hello --list-cameras -n -v
-No cameras available!
+Available cameras
+-----------------
+0 : imx500 [4056x3040 10-bit RGGB] (/base/axi/pcie@1000120000/rp1/i2c@88000/imx500@1a)
+    Modes: 'SRGGB10_CSI2P' : 2028x1520 [30.02 fps - (0, 0)/4056x3040 crop]
+                             4056x3040 [10.00 fps - (0, 0)/4056x3040 crop]
+
+    Available controls for 4056x3040 SRGGB10_CSI2P mode:
+    ----------------------------------------------------
 ```
+
+## Troubleshooting
+
+If your Pi AI camera is not detected, check that it has at least firmware version 15. You'll need to do that using Raspberry Pi OS. The process to check the camera's firmware and update it is outlined here: https://forums.raspberrypi.com/viewtopic.php?t=378050#p2260801
+
+You may also need to increase GPU memory to 64 or 128 MB.
 
 ## Resources Used
 
