@@ -1,5 +1,5 @@
 # balena-pi-ai-cam
-Example of running the Raspberry Pi AI Camera in a container on balena
+Example of running Raspberry Pi cameras (including the AI Camera) in a container on balena
 
 <img src="pi-ai-balena.jpg">
 
