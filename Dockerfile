@@ -1,19 +1,18 @@
-FROM balenalib/raspberrypi5-debian-python:bookworm-build
+FROM python:3.14-trixie
 
-# Next three lines courtesy of https://github.com/hyzhak/pi-camera-in-docker/blob/main/Dockerfile
 
 # Mimic Pi OS:
-RUN apt update && apt install -y --no-install-recommends gnupg
-
-RUN echo "deb http://archive.raspberrypi.org/debian/ bookworm main" > /etc/apt/sources.list.d/raspi.list \
-  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 82B129927FA3303E
+RUN apt update && apt install -y --no-install-recommends gnupg gpgv 
+RUN curl -fsSL https://archive.raspberrypi.com/debian/raspberrypi.gpg.key | gpg --dearmor -o /usr/share/keyrings/raspberrypi-archive-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/raspberrypi-archive-keyring.gpg] https://archive.raspberrypi.com/debian/ trixie main" > /etc/apt/sources.list.d/raspi.list \
+    && echo 'APT::Key::gpgvcommand "/usr/bin/gpgv";' > /etc/apt/apt.conf.d/99gpgv
 
 RUN apt update && apt -y full-upgrade
 
 # Install rpicam apps prereqs
 
 RUN apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev libpng-dev \
-    cmake libboost-program-options-dev libdrm-dev libexif-dev meson ninja-build
+    cmake libboost-program-options-dev libdrm-dev libexif-dev meson ninja-build udev
 
 WORKDIR /usr/src
 
