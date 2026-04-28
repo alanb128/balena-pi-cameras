@@ -7,4 +7,5 @@ services:
     ports:
       - "80:80"
     labels:
-      io.balena.features.firmware: '1'
+      io.balena.features.extra-firmware: '1' 
+      io.balena.features.sysfs: '1'  # Only needed for imx500 examples

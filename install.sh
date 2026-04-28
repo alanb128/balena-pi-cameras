@@ -1,6 +1,8 @@
 #!/bin/sh
-# See https://forums.balena.io/t/how-to-mount-lib-firmware-rw/2949
 
-mount -o remount, rw /lib/firmware
-
-apt install imx500-all
+echo "Installing and copying imx500 firmware..."
+sleep 3
+apt install -y imx500-all
+cp /lib/firmware/imx500*.fpk /extra-firmware/
+cp /lib/firmware/*.bin /extra-firmware/
+echo "Now reboot the device to load the firmware" 
