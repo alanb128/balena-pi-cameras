@@ -24,6 +24,7 @@ RUN git clone https://github.com/raspberrypi/rpicam-apps.git && cd /usr/src/rpic
 ENV UDEV=on
 
 COPY *.sh ./
+RUN chmod +x *.sh
 COPY *.py ./
 
 CMD ["sleep", "infinity"]
